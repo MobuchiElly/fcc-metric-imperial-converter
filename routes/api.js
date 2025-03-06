@@ -20,8 +20,7 @@ module.exports = function (app) {
     if (initUnit == "invalid unit") return res.status(200).json("invalid unit");
     let returnUnit = convertHandler.getReturnUnit(initUnit);
     const returnNum = convertHandler.convert(initNum, initUnit);
-    // console.log(`"api tests:","initNum:"${initNum} "initUnit:"${initUnit}, "returnUnit:"${returnUnit}, "returnNum:"${returnNum}`);
-    // return res.send("building")
+
     const initUnitString = convertHandler.spellOutUnit(initUnit);
     const returnUnitString = convertHandler.spellOutUnit(returnUnit);
 
