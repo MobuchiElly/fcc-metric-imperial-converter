@@ -2,10 +2,7 @@ function ConvertHandler(input) {
   const regex = /^([\d*/.]+)?([a-zA-Z]+)?/;
   const validUnits = ["gal", "l", "lbs", "kg", "mi", "km"];
 
-
   this.getNum = function(input) {
-    // console.log("test all cases:", input.match(regex));
-    
     let numPart = input.match(regex)[1] ? input.match(regex)[1] : "1";
     let result;
     if (numPart.includes("/")){
@@ -55,35 +52,15 @@ function ConvertHandler(input) {
   };
   
   this.convert = function(initNum, initUnit) {
-    const galToL = 3.78541;
-    const lbsToKg = 0.453592;
-    const miToKm = 1.60934;
-    const LTogal = 1 / 3.78541;
-    const kgTolbs = 1 / 0.453592;
-    const kmTomi = 1 / 1.60934;
-
-    let result;
-    
-    switch (initUnit.toLowerCase()){
-      case "gal":
-        result = initNum * 3.78541;
-        break;
-      case "lbs": 
-        result = initNum * 0.453592;
-        break;
-      case "mi": 
-        result = initNum * 1.60934;
-        break;
-      case "l":
-        result = initNum / 3.78541;
-        break;
-      case "kg":
-        result = initNum / 0.453592;
-        break;
-      case "km":
-        result = initNum / 1.60934;
-        break;
-    };
+    const conversionObj ={
+      "gal": 3.78541,
+      "lbs": 0.453592,
+      "mi": 1.60934,
+      "L": 1 / 3.78541,
+      "kg": 1 / 0.453592,
+      "km": 1 / 1.60934
+    }
+    let result = conversionObj[initUnit] * initNum;
     return parseFloat(result.toFixed(5));
   };
   
